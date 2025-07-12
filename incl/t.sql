@@ -5,8 +5,12 @@ CREATE OR REPLACE VIEW V_dept_manager AS
    SELECT v.dept_name,e.first_name,v.dept_no,COUNT(e.emp_no) as nbr_employees
     FROM departments as v 
     JOIN dept_manager as d ON v.dept_no=d.dept_no
-    JOIN employees as e 
-    WHERE e.emp_no=d.emp_no;
+    JOIN employees as e ON d.emp_no=e.emp_no
+    WHERE e.emp_no=d.emp_no
+    GROUP BY v.dept_name, e.first_name, v.dept_no;
+
+
+
 
 
 

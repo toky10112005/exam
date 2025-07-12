@@ -41,6 +41,9 @@
                     </div>
                 </form>
             </div>
+
+            <a href="resume.php">Tableau de résumer</a>
+        
         </div>
 
         <table border='1px'>

@@ -4,6 +4,8 @@
     $list=fiche($_SESSION['emp_no']);
     $nom_dept=nom_dept($_SESSION['dept_no']);
     $titre_emp=titre_emp($_SESSION['emp_no']);
+    $employe_long=emploie_long($_SESSION['emp_no']);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,6 +27,7 @@
                 <li><strong>Salaire:</strong> <?= $list['max']?> $</li>
                 <li><strong>Departement:</strong> <?= $nom_dept['dept_name']?></li>
                 <li><strong>Poste:</strong> <?= $titre_emp['title']?></li>
+                <li><strong>Employe le plus long:</strong> <?= $employe_long['title']?></li>
 
                 <form action="traitement_historique.php" method="post">
                     <input type="submit" value="Voir historique des salaires">
