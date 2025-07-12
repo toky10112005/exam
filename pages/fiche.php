@@ -6,6 +6,8 @@
     $titre_emp=titre_emp($_SESSION['emp_no']);
     $employe_long=emploie_long($_SESSION['emp_no']);
 
+    
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,6 +20,7 @@
 <body>
     <nav>
         <a href="List_employees.php">Retour</a>
+        <a href="changer.php">Changer de département</a>
     </nav>
     <main>
         <ul>

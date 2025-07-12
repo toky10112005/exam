@@ -49,6 +49,11 @@
         $result=mysqli_query(dbconnect(),$sql);
         return mysqli_fetch_assoc($result);
     }
+    function date_debut_dept($dept_no){
+        $sql="SELECT from_date FROM dept_emp WHERE dept_no='$dept_no'";
+        $result=mysqli_query(dbconnect(),$sql);
+        return mysqli_fetch_assoc($result);
+    }
     function titre_emp($emp_no){
         $sql="SELECT title FROM titles WHERE emp_no='$emp_no'";
         $result=mysqli_query(dbconnect(),$sql);
@@ -135,5 +140,9 @@ function trie_y($dept_no){
             LIMIT 1";
     $result = mysqli_query(dbconnect(), $sql);
     return mysqli_fetch_assoc($result);
+    }
+    function changer_dept($dept_no, $emp_no){
+        $sql="UPDATE dept_emp SET dept_no='$dept_no' WHERE emp_no='$emp_no'";
+        return mysqli_query(dbconnect(),$sql);
     }
 ?>  `
