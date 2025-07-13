@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
 </head>
 <body>
-    <h1>Bienvenue</h1>
+    <h1>Bienvenue à vous</h1>
     <main>
         <div class="card mb-4">
             <div class="card-header bg-primary text-white">
