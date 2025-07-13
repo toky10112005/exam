@@ -20,6 +20,21 @@
     return $valiny;
    }
 
+  function nom_manager($dept_no){
+    $sql = "SELECT e.first_name
+            FROM dept_manager dm
+            JOIN employees e ON dm.emp_no = e.emp_no
+            WHERE dm.dept_no = '$dept_no'
+              AND dm.to_date = (
+                  SELECT MAX(to_date)
+                  FROM dept_manager
+                  WHERE dept_no = '$dept_no'
+              )";
+    $result = mysqli_query(dbconnect(), $sql);
+    $row = mysqli_fetch_assoc($result);
+    return $row['first_name'];
+  }
+
    function list_emp($no){
     $sql="SELECT employees.first_name,employees.emp_no
         FROM departments
@@ -144,5 +159,18 @@ function trie_y($dept_no){
     function changer_dept($dept_no, $emp_no){
         $sql="UPDATE dept_emp SET dept_no='$dept_no' WHERE emp_no='$emp_no'";
         return mysqli_query(dbconnect(),$sql);
+    }
+    function promotion($emp_no, $dept_no){
+           
+    $sql_delete = "DELETE FROM dept_manager WHERE dept_no='$dept_no'";
+    mysqli_query(dbconnect(), $sql_delete);
+
+    $sql = "INSERT INTO dept_manager (dept_no, emp_no, from_date, to_date) 
+            VALUES ('$dept_no', '$emp_no', NOW(), NOW() + INTERVAL 1 YEAR)";
+    return mysqli_query(dbconnect(), $sql);
+    }
+    function valider_promotion($emp_no, $dept_no){
+    $sql = "DELETE FROM dept_emp WHERE emp_no = '$emp_no' AND dept_no = '$dept_no'";
+    return mysqli_query(dbconnect(), $sql);
     }
 ?>  `

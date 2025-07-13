@@ -1,7 +1,7 @@
 <?php 
+session_start();
     require('../incl/fonction.php');
     $list=list_dept();
-    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,15 +9,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liste des departement</title>
-    
     <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
 </head>
-<body>
-    <h1>Bienvenue à vous</h1>
-    <main>
-        <div class="card mb-4">
+<body class="bg-light">
+    <div class="container py-4">
+        <h1 class="text-center mb-4">Bienvenue à vous</h1>
+        
+        <div class="card shadow mb-4">
             <div class="card-header bg-primary text-white">
-                <h5>Recherche avancée</h5>
+                <h2 class="h5 mb-0">Recherche avancée</h2>
             </div>
             <div class="card-body">
                 <form action="resultat.php" method="get" class="row g-3">
@@ -38,30 +38,43 @@
                         <input type="number" name="max" min="0" class="form-control">
                     </div>
                     <div class="col-md-2 d-flex align-items-end">
-                        <input type="submit" value="Rechercher" class="btn btn-primary">
+                        <button type="submit" class="btn btn-primary w-100">Rechercher</button>
                     </div>
                 </form>
             </div>
-
-            <a href="resume.php">Tableau de résumer</a>
-        
+            <div class="card-footer">
+                <a href="resume.php" class="btn btn-outline-secondary">Tableau de résumer</a>
+            </div>
         </div>
 
-        <table border='1px'>
-            <tr>
-                <td><strong>Departement</strong></td>
-                <td><strong>Manager</strong></td>
-                <td><strong>Nbr Employees</strong></td>
-            </tr>
-            <?php foreach($list as $list){ ?>
-                <tr>
-                    <td><a href="traitement_emp.php?dept_no=<?= $list['dept_no']?>"><?= $list['dept_name']?></a></td>
-                    <td><?= $list['first_name']?></td>
-                    <?php $count=count_employees($list['dept_no']);?>
-                    <td><?= $count?></td>
-                </tr>
-                <?php }?>
-        </table>
-    </main>
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h2 class="h5 mb-0">Liste des départements</h2>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Departement</th>
+                                <th>Manager</th>
+                                <th>Nbr Employees</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach($list as $list){ ?>
+                                <tr>
+                                    <td><a href="traitement_emp.php?dept_no=<?= $list['dept_no']?>"><?= $list['dept_name']?></a></td>
+                                    <td><?= $list['first_name']?></td>
+                                    <?php $count=count_employees($list['dept_no']);?>
+                                    <td><?= $count?></td>
+                                </tr>
+                            <?php }?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
